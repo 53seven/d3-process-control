@@ -1,12 +1,12 @@
-# d3-nelson-rules
+# d3-process-control
 
 d3 utility to apply [nelsons rules](https://en.wikipedia.org/wiki/Nelson_rules) of process control to a set of data.
 
 ## Installing
 
-If you use NPM, `npm install d3-nelson-rules`. Otherwise, download the [latest release](https://github.com/kiernanmcgowan/d3-nelson-rules/releases/latest).
+If you use NPM, `npm install d3-process-control`. Otherwise, download the [latest release](https://github.com/kiernanmcgowan/d3-process-control/releases/latest).
 
-## API Reference
+## API Example
 
 ```js
 var data = [{
@@ -14,16 +14,26 @@ var data = [{
   val: 3
 } ...];
 
-var nelson = d3.d3_nelson_rules()
+var control = d3.d3_process_control()
   .std(5)
   .mean(1)
+  .rule({
+    'gt_one_std': {
+      size: 1,
+      rule: function(data, mean, std) {
+        // data is an array of size (1 in this case)
+        // returning true marks the data point with the attribute gt_one_std
+        return (data[0] - mean) > std;
+      }
+    }
+  })
   .value(function(d) { return d.val; });
 
 svg.selectAll('rect')
   .data(data)
   .enter()
   ...
-  .call(nelson);
+  .call(control);
 ```
 
 License
