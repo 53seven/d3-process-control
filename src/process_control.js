@@ -2,7 +2,7 @@
 export default process_control;
 import {select as d3_select} from 'd3-selection';
 import * as d3_array from 'd3-array';
-import * as _ from 'lodash';
+import _ from 'lodash';
 
 import {window_arr, mark} from './utils.js';
 
@@ -11,11 +11,9 @@ function process_control() {
   var mean, std, get_value, rules = {};
 
   function rule_checker(selection) {
-    console.log('calling the rule_elem')
     // collect the values and the elements that we are operating on
     // (since we need memory to do our rule processing)
     var elems = [];
-    //selection = d3_select(selection);
     selection.each(function(d, i) {
       var value = (typeof(get_value) === 'function' ? get_value(d) : get_value);
       var element = d3_select(this);
@@ -40,7 +38,7 @@ function process_control() {
       var rule_elem = rules[rule_name];
       var windows = window_arr(elems, rule_elem.size);
       windows.forEach(function(wind) {
-        var result = rule_elem.rule(wind, mean, std);
+        var result = rule_elem.rule(wind.map(function(w) { return w.val; }), mean, std);
         if (result) {
           // mark the elements in the window
           wind.forEach(function(d) {

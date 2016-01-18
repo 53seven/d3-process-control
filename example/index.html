@@ -31,42 +31,19 @@ circle[marked] {
   display: block;
 }
 
-circle[rule_1] {
-  fill: #1f77b4;
+circle[less_than_neg_one] {
+  fill: red;
 }
 
-circle[rule_2] {
-  fill: #ff7f0e;
+circle[greater_than_pos_one] {
+  fill: green;
 }
 
-circle[rule_3] {
-  fill: #2ca02c;
-}
-
-circle[rule_4] {
-  fill: #d62728;
-}
-
-circle[rule_5] {
-  fill: #9467bd;
-}
-
-circle[rule_6] {
-  fill: #8c564b;
-}
-
-circle[rule_7] {
-  fill: #e377c2;
-}
-
-circle[rule_8] {
-  fill: #7f7f7f;
-}
 
 </style>
 <body>
 <script src='https://d3js.org/d3.v3.min.js'></script>
-<script src='../build/d3-nelson-rules.js'></script>
+<script src='../build/d3-process-control.js'></script>
 <script>
 
 var margin = {top: 20, right: 20, bottom: 30, left: 50},
@@ -135,13 +112,28 @@ svg.append('path')
     .attr('d', line);
 
 // nelson rules magic
-var nelson = d3_nelson_rules.nelson().value(function(d) { return d; });
+var pc = d3_process_control.process_control().rule({
+  'less_than_neg_one': {
+    size: 1,
+    rule: function(data) {
+      return data[0] < -1;
+    }
+  },
+  'greater_than_pos_one': {
+    size: 1,
+    rule: function(data) {
+      console.log(data);
+      return data[0] > 1;
+    }
+  }
+
+}).value(function(d) { return d; });
 
 svg.selectAll('circle')
     .data(data)
     .enter()
     .append('circle')
-    .call(nelson)
+    .call(pc)
     .attr('r', 5)
     .attr('cx', function(d, i) { return x(i); })
     .attr('cy', function(d) { return y(d); });

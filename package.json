@@ -16,7 +16,7 @@
   "scripts": {
     "pretest": "npm run build",
     "test": "faucet `find test -name '*-test.js'`",
-    "build": "mkdir -p build && node -e 'process.stdout.write(\"var version = \\\"\" + require(\"./package.json\").version + \"\\\"; export * from \\\"../index\\\"; export {version};\");' > build/bundle.js && rollup -f umd -u d3-process-control -n d3_process_control -o build/d3-process-control.js -- build/bundle.js",
+    "build": "mkdir -p build && node -e 'process.stdout.write(\"var version = \\\"\" + require(\"./package.json\").version + \"\\\"; export * from \\\"../index\\\"; export {version};\");' > build/bundle.js && rollup -c rollup.config.js -f umd -u d3-process-control -n d3_process_control -o build/d3-process-control.js -- build/bundle.js",
     "prepublish": "npm run test && uglifyjs build/d3-process-control.js -c -m -o build/d3-process-control.min.js && rm -f build/d3-process-control.zip && zip -j build/d3-process-control.zip -- LICENSE README.md build/d3-process-control.js build/d3-process-control.min.js"
   },
   "devDependencies": {
@@ -24,6 +24,8 @@
     "faucet": "0.0",
     "jsdom": "^7.2.2",
     "lodash": "^3.10.1",
+    "rollup-plugin-commonjs": "^1.4.0",
+    "rollup-plugin-npm": "^1.1.0",
     "rollup": "0.20.5",
     "tape": "4",
     "tape-catch": "^1.0.4",
