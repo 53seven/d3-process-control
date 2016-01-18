@@ -1,0 +1,37 @@
+{
+  "name": "d3-process-control",
+  "version": "0.2.0",
+  "description": "d3 utility to apply nelsons rules of process control to a set of data",
+  "keywords": [
+    "d3"
+  ],
+  "license": "MIT",
+  "main": "build/d3-process-control.js",
+  "jsnext:main": "index",
+  "homepage": "https://github.com/kiernanmcgowan/d3-process-control",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kiernanmcgowan/d3-process-control.git"
+  },
+  "scripts": {
+    "pretest": "npm run build",
+    "test": "faucet `find test -name '*-test.js'`",
+    "build": "mkdir -p build && node -e 'process.stdout.write(\"var version = \\\"\" + require(\"./package.json\").version + \"\\\"; export * from \\\"../index\\\"; export {version};\");' > build/bundle.js && rollup -f umd -u d3-process-control -n d3_process_control -o build/d3-process-control.js -- build/bundle.js",
+    "prepublish": "npm run test && uglifyjs build/d3-process-control.js -c -m -o build/d3-process-control.min.js && rm -f build/d3-process-control.zip && zip -j build/d3-process-control.zip -- LICENSE README.md build/d3-process-control.js build/d3-process-control.min.js"
+  },
+  "devDependencies": {
+    "cheerio": "^0.19.0",
+    "faucet": "0.0",
+    "jsdom": "^7.2.2",
+    "lodash": "^3.10.1",
+    "rollup": "0.20.5",
+    "tape": "4",
+    "tape-catch": "^1.0.4",
+    "uglify-js": "2"
+  },
+  "dependencies": {
+    "d3-array": "^0.7.0",
+    "d3-selection": "^0.6.0",
+    "lodash": "^3.10.1"
+  }
+}
