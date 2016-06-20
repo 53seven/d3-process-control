@@ -1,11 +1,11 @@
 # d3-process-control
-[![build status](https://travis-ci.org/kiernanmcgowan/d3-process-control.svg)](https://travis-ci.org/kiernanmcgowan/d3-process-control)
+[![build status](https://travis-ci.org/53seven/d3-process-control.svg)](https://travis-ci.org/53seven/d3-process-control)
 
 d3 utility to apply [nelsons rules](https://en.wikipedia.org/wiki/Nelson_rules) of process control to a set of data.
 
 ## Installing
 
-If you use NPM, `npm install d3-process-control`. Otherwise, download the [latest release](https://github.com/kiernanmcgowan/d3-process-control/releases/latest).
+If you use NPM, `npm install d3-process-control`. Otherwise, download the [latest release](https://github.com/53seven/d3-process-control/releases/latest).
 
 ## API Example
 
