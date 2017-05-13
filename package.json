@@ -20,20 +20,20 @@
     "prepublish": "npm run test && uglifyjs build/d3-process-control.js -c -m -o build/d3-process-control.min.js && rm -f build/d3-process-control.zip && zip -j build/d3-process-control.zip -- LICENSE README.md build/d3-process-control.js build/d3-process-control.min.js"
   },
   "devDependencies": {
-    "cheerio": "^0.19.0",
+    "cheerio": "^0.22.0",
     "faucet": "0.0",
-    "jsdom": "^7.2.2",
-    "lodash": "^3.10.1",
-    "rollup-plugin-commonjs": "^1.4.0",
-    "rollup-plugin-npm": "^1.1.0",
-    "rollup": "0.20.5",
+    "jsdom": "^9.12.0",
+    "lodash": "^4.17.4",
+    "rollup": "0.41.6",
+    "rollup-plugin-commonjs": "^8.0.2",
+    "rollup-plugin-node-resolve": "^3.0.0",
     "tape": "4",
     "tape-catch": "^1.0.4",
     "uglify-js": "2"
   },
   "dependencies": {
-    "d3-array": "^0.7.0",
-    "d3-selection": "^0.6.0",
-    "lodash": "^3.10.1"
+    "d3-array": "^1.1.1",
+    "d3-selection": "^1.0.5",
+    "lodash": "^4.17.4"
   }
 }

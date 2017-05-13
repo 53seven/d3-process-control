@@ -1,4 +1,6 @@
 # d3-process-control
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/53seven/d3-process-control.svg)](https://greenkeeper.io/)
 [![build status](https://travis-ci.org/53seven/d3-process-control.svg)](https://travis-ci.org/53seven/d3-process-control)
 
 d3 utility to apply [nelsons rules](https://en.wikipedia.org/wiki/Nelson_rules) of process control to a set of data.
