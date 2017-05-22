@@ -13,9 +13,10 @@ var sample_data = _.range(1, 10);
 
 tape('process_control matches rules that return true', function(test) {
   // emulate a browser
-  var document = jsdom.jsdom(),
-    sample_elems = d3_selection
-                      .select(document.body)
+  var dom = new jsdom.JSDOM();
+  global.document = dom.window.document;
+  var sample_elems = d3_selection
+                      .select(global.document.body)
                       .selectAll('p')
                       .data(sample_data)
                       .enter()
@@ -38,9 +39,10 @@ tape('process_control matches rules that return true', function(test) {
 
 tape('process_control matches rules that return true', function(test) {
   // emulate a browser
-  var document = jsdom.jsdom(),
-    sample_elems = d3_selection
-                      .select(document.body)
+  var dom = new jsdom.JSDOM();
+  global.document = dom.window.document;
+  var sample_elems = d3_selection
+                      .select(global.document.body)
                       .selectAll('p')
                       .data(sample_data)
                       .enter()
