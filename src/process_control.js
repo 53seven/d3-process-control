@@ -8,7 +8,7 @@ import {window_arr, mark} from './utils.js';
 
 function process_control() {
 
-  var mean, std, get_value, rules = {};
+  var sample_mean, sample_std, get_value, rules = {};
 
   function rule_checker(selection) {
     // collect the values and the elements that we are operating on
@@ -23,12 +23,12 @@ function process_control() {
       });
     });
 
-    // check to see if we need to calc mean + std
-    if (!mean) {
-      mean = d3_array.mean(elems, function(d) { return d.val; });
+    // check to see if we need to calc mean + sample_std
+    if (!sample_mean) {
+      sample_mean = d3_array.mean(elems, function(d) { return d.val; });
     }
-    if (!std) {
-      std = d3_array.deviation(elems, function(d) { return d.val; });
+    if (!sample_std) {
+      sample_std = d3_array.deviation(elems, function(d) { return d.val; });
     }
 
     // alright, now that we have our data + elements lets apply each rule
@@ -38,7 +38,7 @@ function process_control() {
       var rule_elem = rules[rule_name];
       var windows = window_arr(elems, rule_elem.size);
       windows.forEach(function(wind) {
-        var result = rule_elem.rule(wind.map(function(w) { return w.val; }), mean, std);
+        var result = rule_elem.rule(wind.map(function(w) { return w.val; }), sample_mean, sample_std);
         if (result) {
           // mark the elements in the window
           wind.forEach(function(d) {
